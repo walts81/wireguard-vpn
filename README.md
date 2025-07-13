@@ -23,6 +23,7 @@ An .env file needs to be present in the same directory with a few env variables.
 - GATEWAY\_IP (IP address of your router/gateway)
 - DEV\_INTERFACE (name of primary networking interface device... ex: eth0)
 - HOST\_IP (IP address of the machine running wireguard)
+- HOST\_SUBNET (ex: 192.168.0.0)
 - HOST\_CIDR (ex: 8 or 16 or 24 or 32)
 
 These scripts are idempotent and can be run at any time even if services are already running/connected.

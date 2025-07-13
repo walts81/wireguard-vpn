@@ -16,10 +16,6 @@ fi
 # Apply the change immediately
 sysctl -w net.ipv4.ip_forward=1
 
-echo "[+] Ensuring iptables-persistent is installed..."
-apt-get update -qq
-DEBIAN_FRONTEND=noninteractive apt-get install -y iptables-persistent
-
 echo "[+] Removing existing MASQUERADE rules for $WG_INTERFACE..."
 # Get list of existing MASQUERADE rules in POSTROUTING
 RULE_NUMS=$(iptables -t nat -L POSTROUTING --line-numbers | grep MASQUERADE | grep "$WG_INTERFACE" | awk '{print $1}' | tac)
