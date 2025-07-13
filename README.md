@@ -7,7 +7,8 @@
 - ./setup-iptables.sh - persists needed iptables rules
 
 ### Install
-run ./install.sh
+clone this repo and move/rename the folder to _/opt/manual-connections_
+run `sudo ./install.sh`
 This script will install any apt packages necessary for the wireguard setup
 
 ### How it works
