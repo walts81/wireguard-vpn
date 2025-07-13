@@ -480,10 +480,18 @@ elif [[ $VPN_PROTOCOL == wireguard ]]; then
   echo "WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname" \\
   echo -e "./connect_to_wireguard_with_token.sh${nc}"
   echo
-  PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN DIP_TOKEN=$DIP_TOKEN \
-    WG_SERVER_IP=$dipAddress WG_HOSTNAME=$dipHostname \
-    /opt/manual-connections/connect_to_wireguard_with_token.sh
+  export PIA_PF
+  export PIA_TOKEN
+  export DIP_TOKEN
+  WG_SERVER_IP=$dipAddress
+  export WG_SERVER_IP
+  WG_HOSTNAME=$dipHostname
+  export WG_HOSTNAME
+  source /opt/manual-connections/connect_to_wireguard_with_token.sh
   rm -f /opt/piavpn-manual/latencyList
+  echo "DNS_1=$DNS_1" 
+  echo "DNS_2=$DNS_2"
+
   # Ensure server VIP is reachable through the tunnel
   SERVER_IP=$dipAddress
   ip route | grep -q "$SERVER_IP" || ip route add "$SERVER_IP" dev "$WG_INTERFACE"
@@ -494,5 +502,7 @@ elif [[ $VPN_PROTOCOL == wireguard ]]; then
   if ! ip route show "$SERVER_IP" | grep -q "via $GATEWAY_IP dev $DEV_INTERFACE"; then
     ip route add "$SERVER_IP" via "$GATEWAY_IP" dev "$DEV_INTERFACE"
   fi
-  exit 0
+  export DNS_1
+  export DNS_2
+  return 0
 fi

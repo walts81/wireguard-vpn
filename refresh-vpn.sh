@@ -46,10 +46,10 @@ export PIA_PF
 export PIA_DNS
 
 # --- Step 3: run the Wireguard setup script
-/opt/manual-connections/refresh-pia-config.sh
+source /opt/manual-connections/refresh-pia-config.sh
 
 # --- Step 4: ensure iptable info is setup correctly
-/opt/manual-connections/setup-iptables.sh
+source /opt/manual-connections/setup-iptables.sh
 
 # --- Step 5: make sure our DNS is pointed at ourselves
 #             we'll forward thru dnsmasq

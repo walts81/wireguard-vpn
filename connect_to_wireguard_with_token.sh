@@ -151,9 +151,10 @@ if [[ $PIA_DNS == "true" ]]; then
 
   DNS_1=$(echo "$wireguard_json" | jq -r '.dns_servers[0]')
   DNS_2=$(echo "$wireguard_json" | jq -r '.dns_servers[1]')
-
+  export DNS_1
+  export DNS_2
   # Replace the upstream DNS in dnsmasq.conf
-  sed -i '/^server=10\./d' /etc/dnsmasq.conf
+  sed -i '/^server=/d' /etc/dnsmasq.conf
   echo "server=$DNS_1" | sudo tee -a /etc/dnsmasq.conf
   echo "server=$DNS_2" | sudo tee -a /etc/dnsmasq.conf 
 
@@ -204,7 +205,7 @@ if [[ $PIA_CONNECT == "true" ]]; then
     echo
     echo "The location used must be port forwarding enabled, or this will fail."
     echo "Calling the ./get_region script with PIA_PF=true will provide a filtered list."
-    exit 1
+    return 0
   fi
 
   echo -ne "This script got started with ${green}PIA_PF=true${nc}.
