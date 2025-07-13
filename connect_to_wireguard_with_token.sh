@@ -200,7 +200,7 @@ if [[ $PIA_CONNECT == "true" ]]; then
     echo -e "$ ${green}PIA_TOKEN=$PIA_TOKEN" \
       "PF_GATEWAY=$WG_SERVER_IP" \
       "PF_HOSTNAME=$WG_HOSTNAME" \
-      "./port_forwarding.sh${nc}"
+      "/opt/manual-connections/port_forwarding.sh${nc}"
     echo
     echo "The location used must be port forwarding enabled, or this will fail."
     echo "Calling the ./get_region script with PIA_PF=true will provide a filtered list."
@@ -221,10 +221,10 @@ if [[ $PIA_CONNECT == "true" ]]; then
   $ ${green}PIA_TOKEN=$PIA_TOKEN \\
     PF_GATEWAY=$WG_SERVER_IP \\
     PF_HOSTNAME=$WG_HOSTNAME \\
-    ./port_forwarding.sh${nc}"
+    /opt/manual-connections/port_forwarding.sh${nc}"
 
   PIA_TOKEN=$PIA_TOKEN \
     PF_GATEWAY=$WG_SERVER_IP \
     PF_HOSTNAME=$WG_HOSTNAME \
-    ./port_forwarding.sh
+    /opt/manual-connections/port_forwarding.sh
 fi

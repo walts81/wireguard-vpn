@@ -222,7 +222,7 @@ if [[ -z $PIA_TOKEN ]]; then
     echo -e "$ PIA_USER=p0123456 PIA_PASS=xxx ./get_region.sh${nc}"
     exit 0
   fi
-  ./get_token.sh
+  /opt/manual-connections/get_token.sh
   PIA_TOKEN=$( awk 'NR == 1' /opt/piavpn-manual/token )
   export PIA_TOKEN
   rm -f /opt/piavpn-manual/token
@@ -241,7 +241,7 @@ if [[ $VPN_PROTOCOL == "wireguard" ]]; then
   echo -e "PIA_PF=$PIA_PF ./connect_to_wireguard_with_token.sh${nc}"
   echo
   PIA_PF=$PIA_PF PIA_TOKEN=$PIA_TOKEN WG_SERVER_IP=$bestServer_WG_IP \
-    WG_HOSTNAME=$bestServer_WG_hostname ./connect_to_wireguard_with_token.sh
+    WG_HOSTNAME=$bestServer_WG_hostname /opt/manual-connections/connect_to_wireguard_with_token.sh
   rm -f /opt/piavpn-manual/latencyList
   exit 0
 fi
